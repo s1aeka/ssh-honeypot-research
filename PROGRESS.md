@@ -12,4 +12,4 @@
    - TryHackMe Linux room is paid (Premium)
 
    ## Next
-   - Lesson 4: TCP server with socket
+   - Lesson 4: TCP server with socket   
