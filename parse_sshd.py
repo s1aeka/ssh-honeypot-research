@@ -26,3 +26,5 @@ with open("sshd.log") as f:
 
 print("Top IPs:", ips.most_common(3))
 print("Top usernames:", users.most_common(3))
+print("Total failed:", sum(ips.values()))
+print("Unique IPs:", len(ips))
