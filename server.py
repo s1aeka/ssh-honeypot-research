@@ -13,9 +13,15 @@ print("Listening on", HOST, PORT)
 while True:
     conn, addr = server.accept()
     ip, port = addr
+
+    conn.sendall(b"login: ")
+    username = conn.recv(1024).decode().strip()
+    conn.sendall(b"Password: ")
+    password = conn.recv(1024).decode().strip()
+    conn.sendall(b"Login incorrect\n")
+    conn.close()
+
     timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     with open(LOG_FILE, "a") as f:
-        f.write(f"{timestamp} connection from {ip}:{port}\n")
-    print("Logged connection from", ip)
-    conn.sendall(b"Hello from honeypot\n")
-    conn.close()
+        f.write(f"{timestamp} {ip}:{port} user={username} password={password}\n")
+    print("Logged attempt from", ip, "user:", username)
